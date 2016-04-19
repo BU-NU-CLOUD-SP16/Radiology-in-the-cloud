@@ -1,0 +1,122 @@
+#!/usr/bin/env python
+#
+#                                                            _
+# diomcTag
+#
+# (c) 2015 Fetal-Neonatal Neuroimaging & Developmental Science Center
+#                   Boston Children's Hospital
+#
+#              http://childrenshospital.org/FNNDSC/
+#                        dev@babyMRI.org
+#
+
+
+# import the plugin.py superclass
+import  os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+from    plugin          import Plugin
+# import the Plugin1In1Out base class that implements the 1-input-1-output execution model
+from    plugin1in1out   import Plugin1In1Out
+import  itertools, shutil
+from    _common         import crun
+import  uuid
+import  psutil
+
+class dicomTag(Plugin1In1Out):
+    '''
+    '''
+    Plugin.AUTHORS          = 'FNNDSC (dev@babyMRI.org)'
+    Plugin.TITLE            = 'FNNDSC dicomTag'
+    Plugin.CATEGORY         = 'Information'
+    Plugin.DESCRIPTION      = 'Get the DICOM tag info'
+    Plugin.DOCUMENTATION    = 'http://wiki'
+    Plugin.LICENSE          = 'Opensource (MIT)'
+    Plugin.VERSION          = '0.1'
+
+
+    def catch(f, handle=lambda e: e, *args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except Exeception as e:
+            return handle(e)
+
+    # def process_check(self, process):
+    #     """
+    #
+    #     LEFT FOR HISTORICAL/REFERENCE REASONS FOR psutil USE
+    #
+    #     Check if Xvfb is running, and if not, launch it. Also
+    #     determine the display for Xvf and set internal self.display
+    #     accordingly.
+    #     """
+    #     pid = -1
+    #     [l_pname, l_pid] = zip(*[[self.catch(lambda: i.name()), i.pid] for i in psutil.process_iter()])
+    #     if process in l_pname:
+    #         pid = l_pid[l_pname.index(process)]
+    #     b_XVfbRunning = 'Xvfb' in [catch(lambda: i.name()) for i in psutil.process_iter()]
+    #     if not b_XVfbRunning:
+    #         self.shell.detach(True)
+    #         self.shell('Xvfb :%s' % self.Xvfb_display)
+
+    def run(self):
+        self.shell          = crun.crun()
+        self.shell.echo(True)
+        self.shell.waitForChild(True)
+        self.shell.detach(True)
+
+        options     = self.options
+        # create temp dir and migrate data
+        self.copyDataToTempDir()
+        # execute dicomTag.py on all dcm files within the input tree
+        cmds = []
+        self.shell('echo $PATH')
+
+        webPath = options.output.split('/home/chris')[1]
+        print('webPath = %s' % webPath)
+
+        imgSizeArg     = ' '
+        if len(options.imgSize):
+            imgSizeArg = ' -s ' + options.imgSize + ' '
+
+        # Note: we assume the Xvfb is running on display :1 -- see
+        # mcheck-chris.bash for more information.
+        for inFile, outFileName in itertools.izip(self.inputFilePaths, self.outputFileNames):
+          cmd = 'export DISPLAY=:1' + '; export PATH=' + self.envVars['ENV_SCRIPT_DIR'] + ':$PATH; ' + \
+                'cd '  + options.output  + '; ' + \
+                'dicomTag.py -i '  + inFile + \
+                            ' -p ' + webPath + imgSizeArg + ' -o index.html'
+          cmds.append(cmd)
+        print(cmds)
+        userErrorStr = 'dicomTag.py could not parse file in dir %s' % self.tempdir
+        self.execCmd(cmds, userErrorStr)
+        # remove temp dir
+        # shell('killall Xvfb')
+        self.removeTempDir()
+
+        # finally, move the index.html file one level up...
+        print("options.output = %s" % options.output)
+        print("CHRIS_USERS = %s" % os.environ)
+        os.chdir(options.output)
+        print(os.getcwd())
+        shutil.copyfile('out.jpg', '../out.jpg')
+        shutil.copyfile('index.html', '../index.html')
+
+
+
+# ENTRYPOINT
+if __name__ == "__main__":
+    plugin = dicomTag()
+
+    # list the inputs
+    plugin.inputs = "--input"
+
+    plugin.add_parameter('Input', Plugin.IMAGE, '--input', action='store', dest='input',
+                          help='the image to convert')
+    plugin.add_parameter('img tag size', Plugin.STRING, '--imgSize', action='store',
+                          dest='imgSize', default='', help='size of image in html page')
+
+    plugin.add_parameter('Output', Plugin.STRING, '--format', action='store', dest='format',
+                          default='html', help='the format to convert to (defined by extension)')
+    plugin.add_parameter('(Advanced) extensions', Plugin.STRING, '--extensions', action='store',
+                          dest='extensions', default='dcm', help='input extensions to parse (comma separated)')
+    plugin.launch()

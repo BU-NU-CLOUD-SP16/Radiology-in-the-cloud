@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+#
+#       __ _ _     ______                                 
+#     / _(_) |    | ___ \                                
+#    | |_ _| | ___| |_/ /_ __ _____      _____  ___ _ __ 
+#    |  _| | |/ _ \ ___ \ '__/ _ \ \ /\ / / __|/ _ \ '__|
+#    | | | | |  __/ |_/ / | | (_) \ V  V /\__ \  __/ |   
+#    |_| |_|_|\___\____/|_|  \___/ \_/\_/ |___/\___|_|   
+#
+# (c) 2012 Fetal-Neonatal Neuroimaging & Developmental Science Center
+#                   Boston Children's Hospital
+#
+#              http://childrenshospital.org/FNNDSC/
+#                        dev@babyMRI.org
+#
+
+# import the plugin.py superclass
+import os, sys, subprocess
+sys.path.append( os.path.join(os.path.dirname(__file__), '../') )
+from plugin import Plugin
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../lib'))
+from  _common import crun
+from  _common import systemMisc as misc
+import shutil
+
+class docker_mri_convert(Plugin):
+  '''
+  '''
+  Plugin.AUTHORS = 'josh (joshmd@bu.edu)'
+  Plugin.TITLE = 'docker_mri_convert'
+  Plugin.CATEGORY = 'Freesurfer'
+  Plugin.DESCRIPTION = 'convert one MRI format to another'
+  Plugin.DOCUMENTATION = 'http://wiki'
+  Plugin.LICENSE = 'Opensource (MIT)'
+  Plugin.VERSION = '0.1'
+
+  def run(self):
+    options = self.options
+    tempDir = os.path.join(options.output, "_chrisInput_")
+    os.mkdir(tempDir)
+    shutil.copy(options.input, tempDir)
+    shell = crun.crun()
+    shell.echo(True)
+    shell.waitForChild(True)
+    print "testing...."
+    print options.input
+    print options.format
+    print options.extensions
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    inputCommand = os.path.basename(options.input)
+    ## to get the output, we need the conversion format, and the name of the original file
+    conversion = '.' + options.format
+    inputName = os.path.basename(options.input)
+    outputName = inputName[:(inputName).rfind('.')] #trim the original file format
+    outputCommand = outputName + conversion
+    print "current directory: %s" % current_dir
+    if options.extensions != '':
+      newcmd = '%s %s %s %s %s --%s' % (os.path.normpath('/home/chris/DockerPlayground/chris_mri_convert'), tempDir, tempDir, inputCommand, outputCommand, options.extensions)
+    else:
+      newcmd = '%s %s %s %s %s %s' % (os.path.normpath('/home/chris/DockerPlayground/chris_mri_convert'), tempDir, tempDir, inputCommand, outputCommand, "") 
+    print(newcmd)
+    shell(newcmd)
+
+    str_exitCode = str(shell.exitCode())
+    if str_exitCode != "0":
+      misc.file_writeOnce(os.path.join(self.chrisRunDir, 'ERROR-out.err'), 'Plugin returned error!')
+
+
+# ENTRYPOINT
+if __name__ == "__main__":
+  plugin = docker_mri_convert()
+  plugin.add_parameter('Input', Plugin.IMAGE, '--input', action='store', dest='input',
+                        help='the image to get info')
+  plugin.add_parameter('Output', Plugin.STRING, '--format', action='store', dest='format',
+                        default='nii', help='the format to convert to (defined by extension)')
+  plugin.add_parameter('(Advanced) extensions', Plugin.STRING, '--extensions', action='store',
+                        dest='extensions', default='', help='input extensions to parse (comma separated)')
+  plugin.status = 100 # no cluster job monitoring to mark a feed instantly as done
+  plugin.launch()
