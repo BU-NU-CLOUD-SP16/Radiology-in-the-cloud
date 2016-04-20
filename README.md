@@ -11,11 +11,11 @@ There are two ways in which you can build an instantiation of the system we have
 
 What follows is a precis of the the ChRIS portable installation instructions.  We assume that you won't be running this off of a USB stick (although if you do, we suggest that you use a much larger one than the 8GB they suggest!)
 
-### Initial setup - Adapted from the [ChRIS Portable](https://github.com/FNNDSC/ChRIS-portable) spec
+#### Initial setup - Adapted from the [ChRIS Portable](https://github.com/FNNDSC/ChRIS-portable) spec
 
-### Start by uploading the ChRIS_portable.vdi to your cloud computing platform of choice
+#### Start by uploading the ChRIS_portable.vdi to your cloud computing platform of choice
 
-#### Unpack the <tt>extra.tgz</tt> file to the host
+##### Unpack the <tt>extra.tgz</tt> file to the host
 
 The <tt>extra.tgz</tt> archive contains the ChRIS <tt>data</tt> and <tt>users</tt> directories. Unpack these directories where ever convenient on the host file system, e.g.
 
@@ -28,13 +28,13 @@ tar xvfz ~/Downloads/extra.tgz
 
 where we assume the <tt>extra.tgz</tt> is in the <tt>~/Downloads</tt> directory.
 
-#### Basic VM settings
+##### Basic VM settings
 
 The cannonical version of ChRIS portable is intended to run a standard VirtualBox <tt>vdi</tt> file configured with 2GB RAM and 2 CPUs.
 
 However, a Dockerized instantiation of ChRIS is going to require significantly more space. This is due to the fact that the main utility that the plugins use, Freesurfer, is a fairly large package (8GB), and sadly this is a non-negotiable investment.
 
-#### Network Port Forwarding:
+##### Network Port Forwarding:
 
 Set the following Port Forwards:
 
@@ -46,11 +46,11 @@ Set the following Port Forwards:
 |   4242    |   4242     |
 |   8888    |   8888     |
 
-### Start the VM
+#### Start the VM
 
 Select the "Chris System" login and use <tt>chris321</tt> as the password.
 
-### Mount the relevant dirs from the host
+#### Mount the relevant dirs from the host
 
 In the ChRIS VM, you will note that the <tt>data</tt> and <tt>users</tt> directories are dead symbolic links:
 
@@ -72,16 +72,20 @@ lrwxrwxrwx 1 chris chris 43 Dec 11 17:32 users -> /mnt/kyon/Users/rudolph.pienaa
 Note that these directories (<tt>data</tt> and <tt>users</tt>) are linked to corresponding directories on the host, located at <tt>/mnt/kyon/Users/rudolph.pienaar/chris/</tt> which you won't have access to ;).
 
 There are two quick ways to amend this. 
+
 • create virtual drives from the data and users archives and mount them at these folders 
+
 or 
+
 • just increase the main disk drive and just plug in the data instead of the links (recommended)
+
 
 Please note that if you are loading the existing ChRIS portable VDI into the MOC, even if you use a virtual machine with a large main drive, or resize the drive, you will need to increase the main disk partition manually after doing so (this was not available when we did this on the MOC, but is supposed to be coming soon in an update). 
 You can use [Gparted](http://gparted.org/) to do this fairly quickly (even while the VM is up and running)
 
 
 
-### Use ChRIS on the VM
+#### Use ChRIS on the VM
 
 To connect to ChRIS on the VM, from the **host** in a browser (preferably Chrome), connect to
 
