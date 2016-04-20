@@ -104,12 +104,12 @@ Similarly, you can login as user chris with <tt>chris321</tt> as the password.
 
 This will bring up the ChRIS front-end. 
 
+![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/ChRIS%20frontend%201.png)
 
 Unfortunately, as ChRIS portable is configured to send jobs to a remote cluster, attempting to start jobs will just send them into the ether.
 
-Pull Chris Portable VDI
-Pull Data, Users files
-Mount Data and Users
+![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/ChRIS%20frontend%202.png)
+
 Download and install FreeSurfer (for diagnostic purposes)
 Download chrismoc/freesurfer docker image
 Put plugins into /src/chrisreloaded/plugins/
