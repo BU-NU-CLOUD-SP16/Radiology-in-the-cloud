@@ -11,7 +11,7 @@ There are two ways in which you can build an instantiation of the system we have
 
 What follows is a precis of the the ChRIS portable installation instructions.  We assume that you won't be running this off of a USB stick (although if you do, we suggest that you use a much larger one than the 8GB they suggest!)
 
-## Initial setup
+## Initial setup - Adapted from the [ChRIS Portable](https://github.com/FNNDSC/ChRIS-portable) spec
 
 ## Start by uploading the ChRIS_portable.vdi to your cloud computing platform of choice
 
