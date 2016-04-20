@@ -13,11 +13,12 @@
 # |__|_|  /__|  |__|  \___  >____/|___|  /\_/  \___  >__|   |__|  
 #       \/                \/           \/          \/               
 #
-# (c) 2012 Fetal-Neonatal Neuroimaging & Developmental Science Center
-#                   Boston Children's Hospital
+# (c) 2016 BU Cloud Computing - Radiology in the Cloud Group
+#                   
 #
-#              http://childrenshospital.org/FNNDSC/
-#                        dev@babyMRI.org
+#              https://github.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud
+#                        joshmd@bu.edu
+#
 #
 
 # import the plugin.py superclass
@@ -35,7 +36,7 @@ class docker_mri_convert(Plugin):
   Plugin.AUTHORS = 'josh (joshmd@bu.edu)'
   Plugin.TITLE = 'docker_mri_convert'
   Plugin.CATEGORY = 'Freesurfer'
-  Plugin.DESCRIPTION = 'convert one MRI format to another'
+  Plugin.DESCRIPTION = 'convert one MRI format to another with optional arguments'
   Plugin.DOCUMENTATION = 'http://wiki'
   Plugin.LICENSE = 'Opensource (MIT)'
   Plugin.VERSION = '0.1'
