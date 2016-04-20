@@ -10,7 +10,10 @@ This year's Radiology-In-The-Cloud group takes things in a slightly different di
 There are two ways in which you can build an instantiation of the system we have established on the [Mass Open Cloud](https://github.com/CCI-MOC/moc-public), but it depends on whether you are going to build from the (established version of ChRIS)[https://github.com/FNNDSC/chrisreloaded] or the [new portable version](https://github.com/FNNDSC/ChRIS-portable). If you are going to build from the portable version, you will need to obtain the virtual disk image and additional files from them.
 
 What follows is a precis of the the ChRIS portable installation instructions.  We assume that you won't be running this off of a USB stick (although if you do, we suggest that you use a much larger one than the 8GB they suggest!)
+
 ## Initial setup
+
+## Start by uploading the ChRIS_portable.vdi to your cloud computing platform of choice
 
 ### Unpack the <tt>extra.tgz</tt> file to the host
 
@@ -27,9 +30,10 @@ where we assume the <tt>extra.tgz</tt> is in the <tt>~/Downloads</tt> directory.
 
 ### Create a Virtual Box "container"
 
-#### Basic VirtualBox settings
+#### Basic VM settings
 
-For the most part, the VM is a standard VirtualBox <tt>vdi</tt> file configured with 2GB RAM and 2 CPUs. More detailed settings include: 
+ChRIS portable is intended to run a standard VirtualBox <tt>vdi</tt> file configured with 2GB RAM and 2 CPUs.
+More detailed settings include: 
 
 * Type: Linux Ubuntu 64-bit
 * 2048 MB RAM
@@ -40,9 +44,11 @@ For the most part, the VM is a standard VirtualBox <tt>vdi</tt> file configured 
 
 **The most important setting is the storage SATA Controller. Add the ChRIS-portable.vdi file as the setting to the controller.**
 
+However, a Dockerized instantiation of ChRIS is going to require significantly more space. This is due to the fact that the main utility that the plugins use, Freesurfer, is a fairly large package (8GB), and sadly this is a non-negotiable investment.
+
 #### Network Port Forwarding:
 
-Set the following Port Forwards in the Network Tab of the VirtualBox Configuration (note: all are TCP protocol rules):
+Set the following Port Forwards:
 
 | Host Port | Guest Port |
 |-----------|------------|
