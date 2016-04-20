@@ -75,6 +75,9 @@ There are two quick ways to amend this.
 
 • create virtual drives from the data and users archives and mount them at these folders 
 
+![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/OpenStack%20Volumes.png)
+![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/ChRIS%20Volumes.png)
+
 or 
 
 • just increase the main disk drive and just plug in the data instead of the links (recommended)
