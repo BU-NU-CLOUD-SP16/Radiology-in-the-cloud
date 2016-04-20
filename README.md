@@ -95,8 +95,17 @@ To connect to ChRIS on the VM, from the **host** in a browser (preferably Chrome
 ```
 http://localhost:8001
 ```
+And the ChRIS front-end will be mounted at
+```
+http://your-external-ip-here/
+```
+
+Similarly, you can login as user chris with <tt>chris321</tt> as the password.
+
+This will bring up the ChRIS front-end. 
 
 
+Unfortunately, as ChRIS portable is configured to send jobs to a remote cluster, attempting to start jobs will just send them into the ether.
 
 Pull Chris Portable VDI
 Pull Data, Users files
