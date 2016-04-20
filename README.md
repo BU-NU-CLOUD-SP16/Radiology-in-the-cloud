@@ -11,11 +11,11 @@ There are two ways in which you can build an instantiation of the system we have
 
 What follows is a precis of the the ChRIS portable installation instructions.  We assume that you won't be running this off of a USB stick (although if you do, we suggest that you use a much larger one than the 8GB they suggest!)
 
-## Initial setup - Adapted from the [ChRIS Portable](https://github.com/FNNDSC/ChRIS-portable) spec
+### Initial setup - Adapted from the [ChRIS Portable](https://github.com/FNNDSC/ChRIS-portable) spec
 
-## Start by uploading the ChRIS_portable.vdi to your cloud computing platform of choice
+### Start by uploading the ChRIS_portable.vdi to your cloud computing platform of choice
 
-### Unpack the <tt>extra.tgz</tt> file to the host
+#### Unpack the <tt>extra.tgz</tt> file to the host
 
 The <tt>extra.tgz</tt> archive contains the ChRIS <tt>data</tt> and <tt>users</tt> directories. Unpack these directories where ever convenient on the host file system, e.g.
 
@@ -46,11 +46,11 @@ Set the following Port Forwards:
 |   4242    |   4242     |
 |   8888    |   8888     |
 
-## Start the VM
+### Start the VM
 
 Select the "Chris System" login and use <tt>chris321</tt> as the password.
 
-## Mount the relevant dirs from the host
+### Mount the relevant dirs from the host
 
 In the ChRIS VM, you will note that the <tt>data</tt> and <tt>users</tt> directories are dead symbolic links:
 
@@ -75,7 +75,7 @@ Please note that if you are loading the existing ChRIS portable VDI into the MOC
 
 
 
-## Use ChRIS on the VM
+### Use ChRIS on the VM
 
 To connect to ChRIS on the VM, from the **host** in a browser (preferably Chrome), connect to
 
