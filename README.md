@@ -69,9 +69,15 @@ lrwxrwxrwx 1 chris chris 43 Dec 11 17:32 users -> /mnt/kyon/Users/rudolph.pienaa
 [chris@chris-portable:x86_64-Linux]~$>
 ```
 
-Note that these directories (<tt>data</tt> and <tt>users</tt>) are linked to corresponding directories on the host, located at <tt>/mnt/kyon/Users/rudolph.pienaar/chris/</tt> which reflects the file tree in my specific case.
+Note that these directories (<tt>data</tt> and <tt>users</tt>) are linked to corresponding directories on the host, located at <tt>/mnt/kyon/Users/rudolph.pienaar/chris/</tt> which you won't have access to ;).
 
-Please note that if you are loading the existing ChRIS portable VDI into the MOC, even if you use a virtual machine with a large main drive, or resize the drive, you will need to increase the main disk partition manually (this was not available when we did this on the MOC, but is supposed to be coming soon in an update). You can use [Gparted](http://gparted.org/) to do this fairly quickly (even while the VM is up and running)
+There are two quick ways to amend this. 
+• create virtual drives from the data and users archives and mount them at these folders 
+or 
+• just increase the main disk drive and just plug in the data instead of the links (recommended)
+
+Please note that if you are loading the existing ChRIS portable VDI into the MOC, even if you use a virtual machine with a large main drive, or resize the drive, you will need to increase the main disk partition manually after doing so (this was not available when we did this on the MOC, but is supposed to be coming soon in an update). 
+You can use [Gparted](http://gparted.org/) to do this fairly quickly (even while the VM is up and running)
 
 
 
