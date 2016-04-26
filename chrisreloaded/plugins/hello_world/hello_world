@@ -12,11 +12,11 @@
 #  \     (  <_> )  | \/  |__/ /_/ |   /\    )  ) 
 #   \/\_/ \____/|__|  |____/\____ |   )/   /  /  
 #                                \/       /__/   
-# (c) 2012 Fetal-Neonatal Neuroimaging & Developmental Science Center
-#                   Boston Children's Hospital
+# (c) 2016 BU Cloud Computing - Radiology in the Cloud Group
+#                   
 #
-#              http://childrenshospital.org/FNNDSC/
-#                        dev@babyMRI.org
+#              https://github.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud
+#                        joshmd@bu.edu
 #
 
 # import the plugin.py superclass
@@ -31,7 +31,7 @@ from  _common import systemMisc as misc
 class HelloWorld(Plugin):
   '''
   '''
-  Plugin.AUTHORS = 'FNNDSC (dev@babyMRI.org)'
+  Plugin.AUTHORS = 'josh (joshmd@bu.edu)'
   Plugin.TITLE = 'HelloWorld'
   Plugin.CATEGORY = 'System'
   Plugin.DESCRIPTION = 'Generate a message'
