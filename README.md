@@ -88,9 +88,9 @@ You can use [Gparted](http://gparted.org/) to do this fairly quickly (even while
 
 
 
-#### Use ChRIS on the VM
+#### Use ChRIS on the Open Cloud
 
-To connect to ChRIS on the VM, from the **host** in a browser (preferably Chrome), connect to
+To connect to ChRIS, from the **host** in a browser (preferably Chrome), connect to
 
 ```
 http://localhost:8001
@@ -124,10 +124,15 @@ You're going to want to get the Linux-CentOS 64bit version. Beware that this is 
 
 Once you have docker installed (again, if using the portable version, beware of filesystem issues), you can get the image we used for the MOC by simply issuing:
 ```docker pull chrismoc/freesurfer```
+As above, beware that this is a sizeable (8GB) download.
 
-Put plugins into /src/chrisreloaded/plugins/
+You will need to [UPDATE the license by registering](https://surfer.nmr.mgh.harvard.edu/registration.html) for FreeSurfer, as the license contained within is only intended for use within the MOC.
+The simplest way to do this is to enter the image itself:
+```docker run -i -t --entrypoint /bin/bash chrismoc/freesurfer
+cd /opt/freesurfer```
+And to replace the ```.license``` file with your own.
 
 
-Ensure that the firewall allows incoming http connections
+####Get the updated plugins.
+The plugins from our repository on GitHub can be put directly into the ChRIS directory ```/src/chrisreloaded/plugins/```
 
-...profit!
