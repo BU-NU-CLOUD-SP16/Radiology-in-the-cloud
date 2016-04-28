@@ -134,9 +134,11 @@ As above, beware that this is a sizeable (8GB) download.
 
 You will need to [UPDATE the license by registering](https://surfer.nmr.mgh.harvard.edu/registration.html) for FreeSurfer, as the license contained within is only intended for use within the MOC.
 The simplest way to do this is to enter the image itself:
-```docker run -i -t --entrypoint /bin/bash chrismoc/freesurfer
-cd /opt/freesurfer```
-And to replace the ```.license``` file with your own.
+```
+docker run -i -t --entrypoint /bin/bash chrismoc/freesurfer
+cd /opt/freesurfer
+```
+Then replace the ```.license``` file with the one which you were sent by MGH.
 
 
 ####Get the updated plugins.
