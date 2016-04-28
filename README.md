@@ -111,8 +111,8 @@ Unfortunately, as ChRIS portable is configured to send jobs to a remote cluster,
 ![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/ChRIS%20frontend%202.png)
 
 Download and install FreeSurfer (for diagnostic purposes)
- 6
-
+![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/Freesurfer1.png)
+![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/Freesurfer2.png)
 Download chrismoc/freesurfer docker image
 
 
