@@ -114,7 +114,12 @@ Unfortunately, as ChRIS portable is configured to send jobs to a remote cluster,
 
 ![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/freesurfer1.png)
 
-You're going to want to get the Linux-CentOS 64bit version. Beware that this is a 4Gb download, and will expand to up to 8Gb. If you're working with the ChRIS portable image distributed by Children's Hospital, you will need to either expand the partition table manually, or you'll need to mount Freesurfer on a separate disk and link it into your filesystem.
+If you want to work on new plugins, and want to be able to verify that the output that you're getting from the Docker-ized version of Freesurfer works properly, you'll need to install FreeSurfer. You're going to want to get the Linux-CentOS 64bit version. Beware that this is a 4Gb download, and will expand to up to 8Gb. If you're working with the ChRIS portable image distributed by Children's Hospital, you will need to either expand the partition table manually, or you'll need to mount Freesurfer on a separate disk and link it into your filesystem.
+Finally, you will need to configure the environment variables (thankfully, already done in the Docker-ized version):
+```
+export FREESURFER_HOME=<freesurfer_installation_directory>/freesurfer
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+```
 
 
 ![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/freesurfer2.png)
