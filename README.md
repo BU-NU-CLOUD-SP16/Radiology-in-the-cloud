@@ -129,10 +129,13 @@ In order to make the symbolic links play nicely, we suggest that you install it 
 as you can download the shell scripts directly from the repository here and the plugins won't require any tweaking.
 
 Once you have docker installed (again, if using the portable version, beware of filesystem issues), you can get the image we used for the MOC by simply issuing:
+
 ```docker pull chrismoc/freesurfer```
+
 As above, beware that this is a sizeable (8GB) download.
 
 You will need to [UPDATE the license by registering](https://surfer.nmr.mgh.harvard.edu/registration.html) for FreeSurfer, as the license contained within is only intended for use within the MOC.
+
 The simplest way to do this is to enter the image itself:
 ```
 docker run -i -t --entrypoint /bin/bash chrismoc/freesurfer
@@ -143,4 +146,4 @@ Then replace the ```.license``` file with the one which you were sent by MGH.
 
 ####Get the updated plugins.
 The plugins from our repository on GitHub can be put directly into the ChRIS directory ```/src/chrisreloaded/plugins/```
-
+These plugins reference scripts located at ```/home/chris/DockerPlayground``` - if you move them, you will need to change the file references in the plugins and in the scripts to the directory that you wish to use.
