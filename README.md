@@ -114,10 +114,16 @@ Unfortunately, as ChRIS portable is configured to send jobs to a remote cluster,
 
 ![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/freesurfer1.png)
 
+You're going to want to get the Linux-CentOS 64bit version. Beware that this is a 4Gb download, and will expand to up to 8Gb. If you're working with the ChRIS portable image distributed by Children's Hospital, you will need to either expand the partition table manually, or you'll need to mount Freesurfer on a separate disk and link it into your filesystem.
+
 
 ![alt_tag](https://raw.githubusercontent.com/BU-NU-CLOUD-SP16/Radiology-in-the-cloud/master/docs/freesurfer2.png)
-Download chrismoc/freesurfer docker image
 
+
+####Download chrismoc/freesurfer docker image
+
+Once you have docker installed (again, if using the portable version, beware of filesystem issues), you can get the image we used for the MOC by simply issuing:
+```docker pull chrismoc/freesurfer```
 
 Put plugins into /src/chrisreloaded/plugins/
 
