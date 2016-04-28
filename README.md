@@ -121,6 +121,12 @@ You're going to want to get the Linux-CentOS 64bit version. Beware that this is 
 
 
 ####Download chrismoc/freesurfer docker image
+Go ahead and [install Docker](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
+In order to make the symbolic links play nicely, we suggest that you install it into 
+```
+/home/chris/DockerPlayground
+```
+as you can download the shell scripts directly from the repository here and the plugins won't require any tweaking.
 
 Once you have docker installed (again, if using the portable version, beware of filesystem issues), you can get the image we used for the MOC by simply issuing:
 ```docker pull chrismoc/freesurfer```
